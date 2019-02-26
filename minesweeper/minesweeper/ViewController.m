@@ -91,13 +91,21 @@
         }
     }
     
+    if (self.gameModel.isGameWon) {
+        if (tileModel.tileState == TileStateMine) {
+            cell.imageView.image = [UIImage imageNamed:@"flag"];
+            cell.imageView.hidden = NO;
+            [self.replayButton setTitle:@":D" forState:UIControlStateNormal];
+        }
+    }
+    
     return cell;
 }
 
 #pragma mark - UICollectionView Delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.gameModel.isGameOver) {
+    if ([self.gameModel isTileTurnedOrFlaggedAtIndexPath:indexPath] || self.gameModel.isGameOver || self.gameModel.isGameWon) {
         return;
     }
     
@@ -137,6 +145,10 @@
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
+    if (self.gameModel.isGameOver || self.gameModel.isGameWon) {
+        return;
+    }
+    
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint point = [gestureRecognizer locationInView:self.collectionView];
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];

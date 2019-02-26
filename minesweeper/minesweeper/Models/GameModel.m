@@ -28,7 +28,7 @@ int const numberOfMines = 10;
 }
 
 - (void)initializeGame {
-    self.isGameStarted = self.isGameOver = NO;
+    self.isGameStarted = self.isGameOver = self.isGameWon = NO;
     [self.timer invalidate];
     self.mineCounter = @10;
     self.seconds = 0;
@@ -65,6 +65,9 @@ int const numberOfMines = 10;
     
     if (tile.tileState == TileStateMine) {
         self.isGameOver = YES;
+        [self.timer invalidate];
+    } else if ([self gameWon]) {
+        self.isGameWon = YES;
         [self.timer invalidate];
     }
 }

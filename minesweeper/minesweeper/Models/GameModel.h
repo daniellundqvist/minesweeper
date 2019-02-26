@@ -22,6 +22,7 @@ extern int const numberOfTilesInSection;
 @property (nonatomic) NSNumber *mineCounter;
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) NSInteger seconds;
+@property (nonatomic) BOOL isGameWon;
 
 - (void)initializeGame;
 - (void)startGameWithTileAtIndexPath:(NSIndexPath *)indexPath;
