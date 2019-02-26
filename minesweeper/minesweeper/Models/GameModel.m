@@ -183,4 +183,15 @@ int const numberOfMines = 10;
     return turnedTilesCount > numberOfTilesInSection * numberOfTilesInSection - numberOfMines - 1;
 }
 
+- (void)setHintTile {
+    for (NSMutableArray *sections in self.tiles) {
+        for (TileModel *tile in sections) {
+            if (tile.tileState != TileStateMine && !tile.turned) {
+                tile.hint = YES;
+                return;
+            }
+        }
+    }
+}
+
 @end

@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, TileState) {
 @property (nonatomic) TileState tileState;
 @property (nonatomic) BOOL flagged;
 @property (nonatomic) BOOL turned;
+@property (nonatomic) BOOL hint;
 @property (nonatomic) NSInteger mineCount;
 
 @end

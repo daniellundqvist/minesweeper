@@ -68,7 +68,14 @@
     
     if (!tileModel.turned) {
         cell.mineCountLabel.hidden = YES;
-        cell.backgroundColor = kTileColor;
+        
+        if (tileModel.hint) {
+            cell.backgroundColor = kTileHintColor;
+            tileModel.hint = NO;
+        } else {
+            cell.backgroundColor = kTileColor;
+        }
+        
         if (tileModel.flagged) {
             cell.imageView.image = [UIImage imageNamed:@"flag"];
             cell.imageView.hidden = NO;
@@ -214,6 +221,15 @@
 - (void)updateTimerLabel {
     self.gameModel.seconds += 1;
     self.timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.gameModel.seconds];
+}
+
+- (IBAction)hintButtonTapped:(id)sender {
+    if (self.gameModel.isGameOver || self.gameModel.isGameWon || !self.gameModel.isGameStarted) {
+        return;
+    }
+    
+    [self.gameModel setHintTile];
+    [self.collectionView reloadData];
 }
 
 @end

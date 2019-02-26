@@ -16,5 +16,6 @@
 #define kTileColor [UIColor colorWithRed:0.682 green:0.851 blue:0.878 alpha:1.00]
 #define kTileTurnedColor [UIColor colorWithRed:0.722 green:0.949 blue:0.902 alpha:1.00]
 #define kTileTurnedMineColor [UIColor colorWithRed:1.000 green:0.651 blue:0.620 alpha:1.00]
+#define kTileHintColor [UIColor colorWithRed:0.980 green:0.953 blue:0.867 alpha:1.00]
 
 #endif /* Constants_h */

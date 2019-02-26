@@ -106,6 +106,21 @@
                                 <color key="textColor" red="0.68235294117647061" green="0.85098039215686272" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k16-Y0-XP4" userLabel="Hint Button">
+                                <rect key="frame" x="295" y="30" width="60" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="DYZ-Yp-omq"/>
+                                    <constraint firstAttribute="width" constant="60" id="k5t-LB-61B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Hint">
+                                    <color key="titleColor" red="0.68235294120000001" green="0.85098039219999999" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="hintButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EOh-W5-0aw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -114,7 +129,9 @@
                             <constraint firstItem="MKE-V4-Zjx" firstAttribute="top" secondItem="0Om-XQ-EVq" secondAttribute="bottom" constant="20" id="EoC-Y7-mO8"/>
                             <constraint firstItem="MKE-V4-Zjx" firstAttribute="top" secondItem="tEd-gw-kPw" secondAttribute="bottom" constant="20" id="JBg-ON-OLA"/>
                             <constraint firstItem="MKE-V4-Zjx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UQc-Cn-Eke"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k16-Y0-XP4" secondAttribute="trailing" constant="20" id="aEW-MU-ytf"/>
                             <constraint firstItem="MKE-V4-Zjx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bvP-sz-oJG"/>
+                            <constraint firstItem="k16-Y0-XP4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="fEY-U4-tPb"/>
                             <constraint firstItem="MKE-V4-Zjx" firstAttribute="top" secondItem="62V-Jq-Am5" secondAttribute="bottom" constant="20" id="nSf-ko-CYD"/>
                             <constraint firstItem="62V-Jq-Am5" firstAttribute="leading" secondItem="tEd-gw-kPw" secondAttribute="trailing" constant="20" id="w1M-zB-WF5"/>
                             <constraint firstItem="MKE-V4-Zjx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wIp-0r-buk"/>
