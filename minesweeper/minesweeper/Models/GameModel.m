@@ -61,6 +61,7 @@ int const numberOfMines = 10;
 - (void)turnTileAtIndexPath:(NSIndexPath *)indexPath {
     TileModel *tile = self.tiles[indexPath.section][indexPath.row];
     tile.turned = YES;
+    tile.mineCount = [self getMineCountForTileAtIndexPath:indexPath];
     
     if (tile.tileState == TileStateMine) {
         self.isGameOver = YES;
@@ -76,6 +77,33 @@ int const numberOfMines = 10;
     [self placeMines];
     
     self.isGameStarted = YES;
+}
+
+- (NSInteger)getMineCountForTileAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger mineCount = 0;
+    NSMutableArray *models = [self getModelsForTilesSurroundingIndexPath:indexPath];
+    for (TileModel *tile in models) {
+        if (tile.tileState == TileStateMine) {
+            mineCount++;
+        }
+    }
+    return mineCount;
+}
+
+- (NSMutableArray *)getModelsForTilesSurroundingIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *models = [NSMutableArray new];
+    for (int section = -1; section < 2; section++) {
+        for (int row = -1; row < 2; row++) {
+            NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row + row inSection:indexPath.section + section];
+            if (currentIndexPath.section >= 0 && currentIndexPath.section < numberOfTilesInSection) {
+                if (currentIndexPath.row >= 0 && currentIndexPath.row < numberOfTilesInSection) {
+                    TileModel *tile = self.tiles[currentIndexPath.section][currentIndexPath.row];
+                    [models addObject:tile];
+                }
+            }
+        }
+    }
+    return models;
 }
 
 @end

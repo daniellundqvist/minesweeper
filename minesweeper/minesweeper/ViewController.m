@@ -61,10 +61,17 @@
         switch (tileModel.tileState) {
             case TileStateNoMine:
                 cell.imageView.hidden = YES;
+                if (tileModel.mineCount > 0) {
+                    cell.mineCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tileModel.mineCount];
+                    cell.mineCountLabel.hidden = NO;
+                } else {
+                    cell.mineCountLabel.hidden = YES;
+                }
                 break;
             case TileStateMine:
                 cell.imageView.image = [UIImage imageNamed:@"mine"];
                 cell.imageView.hidden = NO;
+                cell.mineCountLabel.hidden = YES;
                 break;
             case TileStateProtected:
                 break;
