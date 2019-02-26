@@ -79,6 +79,11 @@ int const numberOfMines = 10;
     self.isGameStarted = YES;
 }
 
+- (BOOL)isTileTurnedOrFlaggedAtIndexPath:(NSIndexPath *)indexPath {
+    TileModel *tile = self.tiles[indexPath.section][indexPath.row];
+    return tile.turned || tile.flagged;
+}
+
 - (NSInteger)getMineCountForTileAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger mineCount = 0;
     NSMutableArray *models = [self getModelsForTilesSurroundingIndexPath:indexPath];

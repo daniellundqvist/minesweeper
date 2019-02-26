@@ -26,6 +26,7 @@ extern int const numberOfTilesInSection;
 - (void)initializeGame;
 - (void)startGameWithTileAtIndexPath:(NSIndexPath *)indexPath;
 - (void)turnTileAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)isTileTurnedOrFlaggedAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

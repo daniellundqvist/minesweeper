@@ -11,7 +11,7 @@
 #import "TileModel.h"
 #import "TileCollectionViewCell.h"
 
-@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIButton *replayButton;
@@ -34,6 +34,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.delegate = self;
+    longPress.delaysTouchesBegan = YES;
+    longPress.minimumPressDuration = 0.5f;
+    [self.collectionView addGestureRecognizer:longPress];
+    
     self.flowLayout.minimumLineSpacing = spacing;
     self.flowLayout.minimumInteritemSpacing = spacing;
 }
@@ -53,9 +59,14 @@
     TileModel *tileModel = self.gameModel.tiles[indexPath.section][indexPath.row];
     
     if (!tileModel.turned) {
-        cell.backgroundColor = UIColor.greenColor;
-        cell.imageView.hidden = YES;
         cell.mineCountLabel.hidden = YES;
+        cell.backgroundColor = UIColor.greenColor;
+        if (tileModel.flagged) {
+            cell.imageView.image = [UIImage imageNamed:@"flag"];
+            cell.imageView.hidden = NO;
+        } else {
+            cell.imageView.hidden = YES;
+        }
     } else {
         cell.backgroundColor = UIColor.redColor;
         switch (tileModel.tileState) {
@@ -123,6 +134,37 @@
     self.timerLabel.text = @"0";
     
     [self.collectionView reloadData];
+}
+
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+        if (indexPath) {
+            TileModel *tileModel = self.gameModel.tiles[indexPath.section][indexPath.row];
+            if (tileModel.turned) {
+                return;
+            }
+            if (tileModel.flagged) {
+                tileModel.flagged = NO;
+                int value = [self.gameModel.mineCounter intValue];
+                self.gameModel.mineCounter = [NSNumber numberWithInt:value + 1];
+            } else {
+                tileModel.flagged = YES;
+                int value = [self.gameModel.mineCounter intValue];
+                self.gameModel.mineCounter = [NSNumber numberWithInt:value - 1];
+            }
+            
+            // Haptic feedback
+            UIImpactFeedbackGenerator *feed = [UIImpactFeedbackGenerator new];
+            [feed impactOccurred];
+            
+            self.mineCounterLabel.text = [NSString stringWithFormat:@"%@", self.gameModel.mineCounter];
+            
+            [self.collectionView reloadData];
+        }
+    }
+    
 }
 
 - (void)updateTimerLabel {
