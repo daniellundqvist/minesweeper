@@ -74,7 +74,15 @@ int const numberOfMines = 10;
     tile.tileState = TileStateProtected;
     tile.turned = YES;
     
+    [self markProtectedForSurroundingTilesAtIndexPath:indexPath];
     [self placeMines];
+    
+    // Update mineCount for protected tiles
+    NSMutableArray *array = [self getIndexPathsForTilesSurroundingIndexPath:indexPath];
+    for (NSIndexPath *indexPath in array) {
+        TileModel *model = self.tiles[indexPath.section][indexPath.row];
+        model.mineCount = [self getMineCountForTileAtIndexPath:indexPath];
+    }
     
     self.isGameStarted = YES;
 }
@@ -82,6 +90,21 @@ int const numberOfMines = 10;
 - (BOOL)isTileTurnedOrFlaggedAtIndexPath:(NSIndexPath *)indexPath {
     TileModel *tile = self.tiles[indexPath.section][indexPath.row];
     return tile.turned || tile.flagged;
+}
+
+- (NSMutableArray *)getIndexPathsForTilesSurroundingIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *paths = [NSMutableArray new];
+    for (int section = -1; section < 2; section++) {
+        for (int row = -1; row < 2; row++) {
+            NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row + row inSection:indexPath.section + section];
+            if (currentIndexPath.section >= 0 && currentIndexPath.section < numberOfTilesInSection) {
+                if (currentIndexPath.row >= 0 && currentIndexPath.row < numberOfTilesInSection) {
+                    [paths addObject:currentIndexPath];
+                }
+            }
+        }
+    }
+    return paths;
 }
 
 - (NSInteger)getMineCountForTileAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,6 +116,15 @@ int const numberOfMines = 10;
         }
     }
     return mineCount;
+}
+
+- (void)markProtectedForSurroundingTilesAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *indexPaths = [self getIndexPathsForTilesSurroundingIndexPath:indexPath];
+    for (NSIndexPath *currentIndexPath in indexPaths) {
+        TileModel *tile = self.tiles[currentIndexPath.section][currentIndexPath.row];
+        tile.tileState = TileStateProtected;
+        tile.turned = YES;
+    }
 }
 
 - (NSMutableArray *)getModelsForTilesSurroundingIndexPath:(NSIndexPath *)indexPath {
