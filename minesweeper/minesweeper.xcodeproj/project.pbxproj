@@ -35,6 +35,7 @@
 		717686B422256F2B006CB980 /* TileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileModel.m; sourceTree = "<group>"; };
 		717686B7222576C7006CB980 /* TileCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileCollectionViewCell.h; sourceTree = "<group>"; };
 		717686B8222576C7006CB980 /* TileCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileCollectionViewCell.m; sourceTree = "<group>"; };
+		717686BA222592E1006CB980 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 				717686A422255C01006CB980 /* LaunchScreen.storyboard */,
 				717686A722255C01006CB980 /* Info.plist */,
 				717686A822255C01006CB980 /* main.m */,
+				717686BA222592E1006CB980 /* Constants.h */,
 			);
 			path = minesweeper;
 			sourceTree = "<group>";

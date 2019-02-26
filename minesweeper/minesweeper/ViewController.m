@@ -10,6 +10,7 @@
 #import "GameModel.h"
 #import "TileModel.h"
 #import "TileCollectionViewCell.h"
+#import "Constants.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 
@@ -33,6 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.collectionView.backgroundColor = kCollectionViewColor;
+    self.view.backgroundColor = kBackgroundColor;
+    self.replayButton.backgroundColor = kBackgroundColor;
+    [self.replayButton setTitleColor:kTextColor forState:UIControlStateNormal];
+    self.mineCounterLabel.textColor = kTextColor;
+    self.timerLabel.textColor = kTextColor;
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     longPress.delegate = self;
@@ -60,15 +68,16 @@
     
     if (!tileModel.turned) {
         cell.mineCountLabel.hidden = YES;
-        cell.backgroundColor = UIColor.greenColor;
+        cell.backgroundColor = kTileColor;
         if (tileModel.flagged) {
             cell.imageView.image = [UIImage imageNamed:@"flag"];
             cell.imageView.hidden = NO;
         } else {
             cell.imageView.hidden = YES;
         }
+        
     } else {
-        cell.backgroundColor = UIColor.redColor;
+        cell.backgroundColor = kTileTurnedColor;
         switch (tileModel.tileState) {
             case TileStateNoMine:
                 cell.imageView.hidden = YES;
@@ -83,8 +92,16 @@
                 cell.imageView.image = [UIImage imageNamed:@"mine"];
                 cell.imageView.hidden = NO;
                 cell.mineCountLabel.hidden = YES;
+                cell.backgroundColor = kTileTurnedMineColor;
                 break;
             case TileStateProtected:
+                cell.imageView.hidden = YES;
+                if (tileModel.mineCount > 0) {
+                    cell.mineCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tileModel.mineCount];
+                    cell.mineCountLabel.hidden = NO;
+                } else {
+                    cell.mineCountLabel.hidden = YES;
+                }
                 break;
             default:
                 break;
@@ -96,9 +113,11 @@
             if (tileModel.flagged && tileModel.tileState == TileStateNoMine) {
                 cell.imageView.image = [UIImage imageNamed:@"mine_misplaced"];
                 cell.imageView.hidden = NO;
+                cell.backgroundColor = kTileTurnedColor;
             } else if (!tileModel.flagged && tileModel.tileState == TileStateMine) {
                 cell.imageView.image = [UIImage imageNamed:@"mine"];
                 cell.imageView.hidden = NO;
+                cell.backgroundColor = kTileTurnedColor;
             }
         }
         [self.replayButton setTitle:@":(" forState:UIControlStateNormal];
