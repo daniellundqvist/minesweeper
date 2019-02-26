@@ -20,6 +20,9 @@ extern int const numberOfTilesInSection;
 @property (nonatomic) BOOL isGameStarted;
 @property (nonatomic) NSNumber *mineCounter;
 
+- (void)startGameWithTileAtIndexPath:(NSIndexPath *)indexPath;
+- (void)turnTileAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 NS_ASSUME_NONNULL_END
