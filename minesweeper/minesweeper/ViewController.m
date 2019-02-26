@@ -87,6 +87,10 @@
         [self.gameModel turnTileAtIndexPath:indexPath];
     } else {
         [self.gameModel startGameWithTileAtIndexPath:indexPath];
+        // Add and start timer
+        self.gameModel.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop addTimer:self.gameModel.timer forMode:NSRunLoopCommonModes];
     }
     
     [self.collectionView reloadData];
@@ -109,5 +113,9 @@
     
 }
 
+- (void)updateTimerLabel {
+    self.gameModel.seconds += 1;
+    self.timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.gameModel.seconds];
+}
 
 @end

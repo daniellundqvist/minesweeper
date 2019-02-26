@@ -15,6 +15,10 @@ int const numberOfMines = 10;
 
 @implementation GameModel
 
+- (void)dealloc {
+    [self.timer invalidate];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -25,7 +29,9 @@ int const numberOfMines = 10;
 
 - (void)initializeGame {
     self.isGameStarted = self.isGameOver = NO;
+    [self.timer invalidate];
     self.mineCounter = @10;
+    self.seconds = 0;
     self.tiles = [NSMutableArray new];
     // Create representation of sections and rows
     for (int section = 0; section < numberOfTilesInSection; section++) {
@@ -58,6 +64,7 @@ int const numberOfMines = 10;
     
     if (tile.tileState == TileStateMine) {
         self.isGameOver = YES;
+        [self.timer invalidate];
     }
 }
 
