@@ -110,7 +110,12 @@
 #pragma mark - Action Methods
 
 - (IBAction)replayButtonTapped:(id)sender {
+    [self.gameModel initializeGame];
+    [self.replayButton setTitle:@":)" forState:UIControlStateNormal];
+    self.mineCounterLabel.text = @"10";
+    self.timerLabel.text = @"0";
     
+    [self.collectionView reloadData];
 }
 
 - (void)updateTimerLabel {

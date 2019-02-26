@@ -23,6 +23,7 @@ extern int const numberOfTilesInSection;
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) NSInteger seconds;
 
+- (void)initializeGame;
 - (void)startGameWithTileAtIndexPath:(NSIndexPath *)indexPath;
 - (void)turnTileAtIndexPath:(NSIndexPath *)indexPath;
 
