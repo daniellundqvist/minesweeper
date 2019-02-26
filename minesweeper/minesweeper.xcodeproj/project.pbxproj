@@ -15,6 +15,7 @@
 		717686A922255C01006CB980 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686A822255C01006CB980 /* main.m */; };
 		717686B222256A5E006CB980 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686B122256A5E006CB980 /* GameModel.m */; };
 		717686B522256F2B006CB980 /* TileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686B422256F2B006CB980 /* TileModel.m */; };
+		717686B9222576C7006CB980 /* TileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686B8222576C7006CB980 /* TileCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		717686B122256A5E006CB980 /* GameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		717686B322256F2B006CB980 /* TileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileModel.h; sourceTree = "<group>"; };
 		717686B422256F2B006CB980 /* TileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileModel.m; sourceTree = "<group>"; };
+		717686B7222576C7006CB980 /* TileCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileCollectionViewCell.h; sourceTree = "<group>"; };
+		717686B8222576C7006CB980 /* TileCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 				7176869C22255C00006CB980 /* ViewController.h */,
 				7176869D22255C00006CB980 /* ViewController.m */,
 				7176869F22255C00006CB980 /* Main.storyboard */,
+				717686B6222576A4006CB980 /* Views */,
 				717686AF22256A29006CB980 /* Models */,
 				717686A222255C01006CB980 /* Assets.xcassets */,
 				717686A422255C01006CB980 /* LaunchScreen.storyboard */,
@@ -87,6 +91,15 @@
 				717686B422256F2B006CB980 /* TileModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		717686B6222576A4006CB980 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				717686B7222576C7006CB980 /* TileCollectionViewCell.h */,
+				717686B8222576C7006CB980 /* TileCollectionViewCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +176,7 @@
 				717686B522256F2B006CB980 /* TileModel.m in Sources */,
 				717686B222256A5E006CB980 /* GameModel.m in Sources */,
 				717686A922255C01006CB980 /* main.m in Sources */,
+				717686B9222576C7006CB980 /* TileCollectionViewCell.m in Sources */,
 				7176869B22255C00006CB980 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
