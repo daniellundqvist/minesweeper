@@ -97,6 +97,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="MKE-V4-Zjx" id="34i-zf-XVa"/>
+                        <outlet property="flowLayout" destination="xh5-Jh-AMz" id="jFF-0X-LgL"/>
                         <outlet property="mineCounterLabel" destination="tEd-gw-kPw" id="b6p-M8-gJC"/>
                         <outlet property="replayButton" destination="62V-Jq-Am5" id="9VZ-fm-f6Z"/>
                         <outlet property="timerLabel" destination="0Om-XQ-EVq" id="nST-rg-sv2"/>

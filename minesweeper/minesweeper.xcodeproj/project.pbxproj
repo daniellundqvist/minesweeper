@@ -13,6 +13,7 @@
 		717686A322255C01006CB980 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 717686A222255C01006CB980 /* Assets.xcassets */; };
 		717686A622255C01006CB980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717686A422255C01006CB980 /* LaunchScreen.storyboard */; };
 		717686A922255C01006CB980 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686A822255C01006CB980 /* main.m */; };
+		717686B222256A5E006CB980 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686B122256A5E006CB980 /* GameModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		717686A522255C01006CB980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		717686A722255C01006CB980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		717686A822255C01006CB980 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		717686B022256A5E006CB980 /* GameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		717686B122256A5E006CB980 /* GameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +66,22 @@
 				7176869C22255C00006CB980 /* ViewController.h */,
 				7176869D22255C00006CB980 /* ViewController.m */,
 				7176869F22255C00006CB980 /* Main.storyboard */,
+				717686AF22256A29006CB980 /* Models */,
 				717686A222255C01006CB980 /* Assets.xcassets */,
 				717686A422255C01006CB980 /* LaunchScreen.storyboard */,
 				717686A722255C01006CB980 /* Info.plist */,
 				717686A822255C01006CB980 /* main.m */,
 			);
 			path = minesweeper;
+			sourceTree = "<group>";
+		};
+		717686AF22256A29006CB980 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				717686B022256A5E006CB980 /* GameModel.h */,
+				717686B122256A5E006CB980 /* GameModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7176869E22255C00006CB980 /* ViewController.m in Sources */,
+				717686B222256A5E006CB980 /* GameModel.m in Sources */,
 				717686A922255C01006CB980 /* main.m in Sources */,
 				7176869B22255C00006CB980 /* AppDelegate.m in Sources */,
 			);
