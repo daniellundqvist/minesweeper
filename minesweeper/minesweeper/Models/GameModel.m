@@ -85,6 +85,7 @@ int const numberOfMines = 10;
     }
     
     self.isGameStarted = YES;
+    [self turnEmptyTilesForSurroundingIndexPaths:[self getIndexPathsForTilesSurroundingIndexPath:indexPath]];
 }
 
 - (BOOL)isTileTurnedOrFlaggedAtIndexPath:(NSIndexPath *)indexPath {
@@ -141,6 +142,42 @@ int const numberOfMines = 10;
         }
     }
     return models;
+}
+
+- (void)turnEmptyTilesForSurroundingIndexPaths:(NSMutableArray *)tileIndexPaths {
+    NSMutableArray *turnedTileIndexPaths = [NSMutableArray array];
+    while (tileIndexPaths.count) {
+        NSIndexPath *surroundingTileIndexPath = (NSIndexPath *)tileIndexPaths.lastObject;
+        [turnedTileIndexPaths addObject:surroundingTileIndexPath];
+        [tileIndexPaths removeLastObject];
+        
+        NSInteger mineCount = [self getMineCountForTileAtIndexPath:surroundingTileIndexPath];
+        if (!mineCount){
+            NSMutableArray *expandedTileIndexPaths = [self getIndexPathsForTilesSurroundingIndexPath:surroundingTileIndexPath];
+            for (NSIndexPath *expandedTileIndexPath in expandedTileIndexPaths){
+                if (![turnedTileIndexPaths containsObject:expandedTileIndexPath]){
+                    [self turnTileAtIndexPath:expandedTileIndexPath];
+                    [tileIndexPaths addObject:expandedTileIndexPath];
+                }
+            }
+        }
+    }
+}
+
+- (BOOL)gameWon {
+    NSInteger turnedTilesCount = 0;
+    
+    for (NSMutableArray *sections in self.tiles) {
+        for (TileModel *tile in sections) {
+            if (tile.tileState == TileStateNoMine || tile.tileState == TileStateProtected) {
+                if (tile.turned) {
+                    turnedTilesCount++;
+                }
+            }
+        }
+    }
+    
+    return turnedTilesCount > numberOfTilesInSection * numberOfTilesInSection - numberOfMines - 1;
 }
 
 @end
