@@ -14,6 +14,7 @@
 		717686A622255C01006CB980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717686A422255C01006CB980 /* LaunchScreen.storyboard */; };
 		717686A922255C01006CB980 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686A822255C01006CB980 /* main.m */; };
 		717686B222256A5E006CB980 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686B122256A5E006CB980 /* GameModel.m */; };
+		717686B522256F2B006CB980 /* TileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 717686B422256F2B006CB980 /* TileModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		717686A822255C01006CB980 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		717686B022256A5E006CB980 /* GameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		717686B122256A5E006CB980 /* GameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
+		717686B322256F2B006CB980 /* TileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileModel.h; sourceTree = "<group>"; };
+		717686B422256F2B006CB980 /* TileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 			children = (
 				717686B022256A5E006CB980 /* GameModel.h */,
 				717686B122256A5E006CB980 /* GameModel.m */,
+				717686B322256F2B006CB980 /* TileModel.h */,
+				717686B422256F2B006CB980 /* TileModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7176869E22255C00006CB980 /* ViewController.m in Sources */,
+				717686B522256F2B006CB980 /* TileModel.m in Sources */,
 				717686B222256A5E006CB980 /* GameModel.m in Sources */,
 				717686A922255C01006CB980 /* main.m in Sources */,
 				7176869B22255C00006CB980 /* AppDelegate.m in Sources */,
