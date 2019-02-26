@@ -24,7 +24,7 @@ int const numberOfMines = 10;
 }
 
 - (void)initializeGame {
-    self.isGameStarted = NO;
+    self.isGameStarted = self.isGameOver = NO;
     self.mineCounter = @10;
     self.tiles = [NSMutableArray new];
     // Create representation of sections and rows
@@ -39,15 +39,35 @@ int const numberOfMines = 10;
     }
 }
 
+- (void)placeMines {
+    int placedMines = 0;
+    while (placedMines < numberOfMines) {
+        int randomSection = arc4random_uniform(numberOfTilesInSection);
+        int randomRow = arc4random_uniform(numberOfTilesInSection);
+        TileModel *tile = self.tiles[randomSection][randomRow];
+        if (tile.tileState != TileStateProtected && tile.tileState != TileStateMine) {
+            tile.tileState = TileStateMine;
+            placedMines += 1;
+        }
+    }
+}
+
 - (void)turnTileAtIndexPath:(NSIndexPath *)indexPath {
     TileModel *tile = self.tiles[indexPath.section][indexPath.row];
     tile.turned = YES;
+    
+    if (tile.tileState == TileStateMine) {
+        self.isGameOver = YES;
+    }
 }
 
 - (void)startGameWithTileAtIndexPath:(NSIndexPath *)indexPath {
     TileModel *tile = self.tiles[indexPath.section][indexPath.row];
     tile.tileState = TileStateProtected;
     tile.turned = YES;
+    
+    [self placeMines];
+    
     self.isGameStarted = YES;
 }
 

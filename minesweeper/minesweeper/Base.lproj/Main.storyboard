@@ -73,7 +73,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="YZe-bB-ayF" firstAttribute="leading" secondItem="ru5-7Z-ha1" secondAttribute="leading" id="APN-qA-1MY"/>
                                             <constraint firstAttribute="bottom" secondItem="YZe-bB-ayF" secondAttribute="bottom" id="EJl-To-9FB"/>

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "GameModel.h"
 #import "TileModel.h"
+#import "TileCollectionViewCell.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -48,17 +49,22 @@
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"tile" forIndexPath:indexPath];
+    TileCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"tile" forIndexPath:indexPath];
     TileModel *tileModel = self.gameModel.tiles[indexPath.section][indexPath.row];
     
     if (!tileModel.turned) {
-        cell.backgroundColor = UIColor.lightGrayColor;
-    } else {
         cell.backgroundColor = UIColor.greenColor;
+        cell.imageView.hidden = YES;
+        cell.mineCountLabel.hidden = YES;
+    } else {
+        cell.backgroundColor = UIColor.redColor;
         switch (tileModel.tileState) {
             case TileStateNoMine:
+                cell.imageView.hidden = YES;
                 break;
             case TileStateMine:
+                cell.imageView.image = [UIImage imageNamed:@"mine"];
+                cell.imageView.hidden = NO;
                 break;
             case TileStateProtected:
                 break;
@@ -73,6 +79,10 @@
 #pragma mark - UICollectionView Delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.gameModel.isGameOver) {
+        return;
+    }
+    
     if (self.gameModel.isGameStarted) {
         [self.gameModel turnTileAtIndexPath:indexPath];
     } else {

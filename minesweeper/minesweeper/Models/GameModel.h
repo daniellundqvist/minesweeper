@@ -18,6 +18,7 @@ extern int const numberOfTilesInSection;
 
 @property (nonatomic) NSMutableArray *tiles;
 @property (nonatomic) BOOL isGameStarted;
+@property (nonatomic) BOOL isGameOver;
 @property (nonatomic) NSNumber *mineCounter;
 
 - (void)startGameWithTileAtIndexPath:(NSIndexPath *)indexPath;
