@@ -14,10 +14,10 @@
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 @property (strong, nonatomic) IBOutlet UIButton *replayButton;
 @property (strong, nonatomic) IBOutlet UILabel *mineCounterLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timerLabel;
-@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic) GameModel *gameModel;
 
@@ -89,6 +89,19 @@
             default:
                 break;
         }
+    }
+    
+    if (self.gameModel.isGameOver) {
+        if (!tileModel.turned) {
+            if (tileModel.flagged && tileModel.tileState == TileStateNoMine) {
+                cell.imageView.image = [UIImage imageNamed:@"mine_misplaced"];
+                cell.imageView.hidden = NO;
+            } else if (!tileModel.flagged && tileModel.tileState == TileStateMine) {
+                cell.imageView.image = [UIImage imageNamed:@"mine"];
+                cell.imageView.hidden = NO;
+            }
+        }
+        [self.replayButton setTitle:@":(" forState:UIControlStateNormal];
     }
     
     if (self.gameModel.isGameWon) {
